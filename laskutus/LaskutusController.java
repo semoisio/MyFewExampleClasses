@@ -686,9 +686,9 @@ public class LaskutusController {
         if (result.orElse(okButton) == okButton) { // Tutkitana mitä on painettu jos kyllä niin aktivoidaan lähetys
             //String to = "severi.moisio@hotmail.fi"; //oma sähköposti testiä varten
             String to = lasku.getVaraus().getAsiakas().getEmail(); // osoite mihin lähetetään
-            String user = "seve45@gmail.com"; // käyttäjänimi minun gmail palvelimeen
+            String user = "mygmail"; // käyttäjänimi minun gmail palvelimeen
             String host = "smtp.gmail.com";//or IP address gmail palvelin
-            String password = "Ebksnznf1"; // minun salasana gmailiin
+            String password = "password"; // minun salasana gmailiin
 
             //asetetaan lähetyksen propestiesit
             Properties props = System.getProperties();
