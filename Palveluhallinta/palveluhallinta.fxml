@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Palveluhallinta.PalveluhallintaController">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox>
+                    <children>
+                        <MenuBar HBox.hgrow="ALWAYS">
+                            <menus>
+                                <Menu mnemonicParsing="false" text="Tiedosto">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#aloitaLisays" text="Lisää uusi" />
+                              <MenuItem mnemonicParsing="false" onAction="#palaaEtusivulle" text="Sulje" />
+                                    </items>
+                                </Menu>
+                                <Menu mnemonicParsing="false" text="Ohje">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#avaaOhje" text="Avaa ohje" />
+                                    </items>
+                                </Menu>
+                            </menus>
+                        </MenuBar>
+                    </children>
+                </HBox>
+                <Button fx:id="btnLisaaUusi" mnemonicParsing="false" onAction="#aloitaLisays" text="Lisää uusi palvelu">
+                    <VBox.margin>
+                        <Insets left="15.0" top="20.0" />
+                    </VBox.margin>
+               <tooltip>
+                  <Tooltip text="Aloita tästä uuden palvelun lisäys" />
+               </tooltip>
+                </Button>
+            </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+        </VBox>
+    </top>
+    <bottom>
+        <HBox spacing="300.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="lblIlmoitukset" text="Ilmoitukset" textFill="#191818" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin></Label>
+            </children>
+        </HBox>
+    </bottom>
+    <right>
+        <TableView fx:id="tvPalvelut" onMouseClicked="#valittuTableview" prefHeight="611.0" prefWidth="564.0" BorderPane.alignment="CENTER">
+            <columns>
+            <TableColumn fx:id="idSarake" text="Palvelu ID" />
+                <TableColumn fx:id="taSarake" prefWidth="120.0" text="Toiminta-alue" />
+                <TableColumn fx:id="nimiSarake" text="Nimi" />
+                <TableColumn fx:id="kuvausSarake" prefWidth="200.0" text="Kuvaus" />
+                <TableColumn fx:id="hintaSarake" text="Hinta" />
+            </columns>
+            <BorderPane.margin>
+                <Insets right="15.0" />
+            </BorderPane.margin>
+         <tooltip>
+            <Tooltip text="Valitsemalla rivin pääset muokkaamaan tai poistamaan sen" />
+         </tooltip>
+        </TableView>
+    </right>
+    <left>
+        <VBox fx:id="vBoxLeft" disable="true" prefHeight="622.0" prefWidth="378.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox>
+                    <children>
+                        <Label text="Toiminta-alue" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <ComboBox fx:id="cbTAlueet" prefWidth="200.0">
+                     <tooltip>
+                        <Tooltip text="Valitse toiminta-alue" />
+                     </tooltip></ComboBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="50.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Nimi" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfNimi" prefWidth="200.0" />
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Kuvaus" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextArea fx:id="taKuvaus" prefHeight="200.0" prefWidth="300.0" wrapText="true" />
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Label text="Hinta" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tfHinta" prefWidth="200.0" />
+                    </children>
+                </HBox>
+                <HBox>
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#peruuta" prefHeight="26.0" prefWidth="70.0" text="Peruuta">
+                     <tooltip>
+                        <Tooltip text="Peruuttaa lisäyksen/muokkauksen ja tyhjää kentät" />
+                     </tooltip></Button>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnLisaaKantaan" mnemonicParsing="false" onAction="#lisaa" prefHeight="26.0" prefWidth="70.0" text="Lisää">
+                     <tooltip>
+                        <Tooltip text="Lisää/päivittää palvelun kantaan" />
+                     </tooltip></Button>
+                    </children>
+                </HBox>
+            </children>
+            <BorderPane.margin>
+                <Insets left="15.0" />
+            </BorderPane.margin>
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane fx:id="apKeski" disable="true" prefHeight="622.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnMuokkaa" layoutX="96.0" layoutY="168.0" mnemonicParsing="false" onAction="#muokkaa" text="Muokkaa" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnPoista" layoutX="96.0" layoutY="225.0" mnemonicParsing="false" onAction="#poista" text="Poista" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="150.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+               <tooltip>
+                  <Tooltip text="Poista palvelu kannasta" />
+               </tooltip>
+                </Button>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

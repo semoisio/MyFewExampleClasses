@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="kokoSivu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="laskutus.LaskutusController">
+   <top>
+      <VBox prefHeight="66.0" prefWidth="955.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox>
+               <children>
+                  <MenuBar HBox.hgrow="ALWAYS">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Tiedosto">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#etusivulle" text="Sulje" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Ohje">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#avaaOhje" text="Avaa ohje" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+               </children>
+            </HBox>
+            <Button fx:id="btnAloita" mnemonicParsing="false" onAction="#aloitaLaskunLuonti" prefHeight="26.0" prefWidth="85.0" text="Lisää uusi">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblIlmoitukset" text="ilmoituksia" textFill="#464343" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin></Label>
+         </children>
+      </HBox>
+   </bottom>
+   <right>
+      <TableView fx:id="tvLaskut" onMouseClicked="#valitseLasku" prefHeight="626.0" prefWidth="632.0" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="626.3998413085938" text="Laskut">
+               <columns>
+                <TableColumn fx:id="tcLaskuId" prefWidth="100.00005948543549" text="LaskuId" />
+                <TableColumn fx:id="tcSumma" prefWidth="87.99994659423828" text="Summa" />
+                  <TableColumn fx:id="tcAlv" prefWidth="108.0" text="ALV" />
+                  <TableColumn fx:id="tcMaksettu" prefWidth="75.19989013671875" text="Maksettu" />
+                  <TableColumn prefWidth="125.60003662109375" text="Asiakas">
+                     <columns>
+                        <TableColumn fx:id="tcEtunimi" prefWidth="75.0" text="Etunimi" />
+                        <TableColumn fx:id="tcSukunimi" prefWidth="75.20004272460938" text="Sukunimi" />
+                     </columns>
+                  </TableColumn>
+                  <TableColumn fx:id="tcLoppu" prefWidth="108.7999267578125" text="Varauksen Loppu" />
+               </columns>
+            </TableColumn>
+        </columns>
+         <BorderPane.margin>
+            <Insets right="15.0" />
+         </BorderPane.margin>
+      </TableView>
+   </right>
+   <left>
+      <VBox prefHeight="584.0" prefWidth="442.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="apVaraus" disable="true" prefHeight="200.0" prefWidth="221.0">
+               <children>
+                  <Label layoutY="14.0" text="Valitse hakuehto:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="15.0" />
+                  <ComboBox fx:id="cbEhdot" layoutX="117.0" layoutY="10.0" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="10.0" />
+                  <Label layoutX="18.0" layoutY="56.0" text="Syötä hakusana:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="55.0" />
+                  <TextField fx:id="tfHaku" layoutX="118.0" layoutY="52.0" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0" />
+                  <Button layoutX="197.0" layoutY="87.0" mnemonicParsing="false" onAction="#haeVaraukset" prefHeight="26.0" prefWidth="85.0" text="Hae" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="50.0" />
+                  <TableView fx:id="tvVaraukset" layoutY="122.0" minHeight="250.0" onMouseClicked="#aloitaLuoLasku" prefHeight="300.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85.0">
+                    <columns>
+                        <TableColumn prefWidth="75.0" text="Varaukset">
+                           <columns>
+                            <TableColumn fx:id="sarakeId" prefWidth="75.0" text="VarausID" />
+                              <TableColumn prefWidth="75.0" text="Asiakas">
+                                 <columns>
+                                    <TableColumn fx:id="sarakeEtunimi" prefWidth="75.0" text="Etunimi" />
+                                    <TableColumn fx:id="sarakeSukunimi" prefWidth="75.0" text="Sukunimi" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="sarakeMokki" prefWidth="75.0" text="Mökki" />
+                            <TableColumn fx:id="sarakeAlkuPvm" prefWidth="75.0" text="AlkuPvm" />
+                              <TableColumn fx:id="sarakeLoppuPvm" prefWidth="75.0" text="LoppuPvm" />
+                           </columns>
+                        </TableColumn>
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apLasku" disable="true" prefHeight="260.0" prefWidth="455.0">
+               <children>
+                  <Label layoutX="16.0" layoutY="112.0" text="Summa:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="120.0" />
+                  <CheckBox fx:id="chbMaksettu" layoutX="101.0" layoutY="176.0" mnemonicParsing="false" text="Maksettu" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="185.0" />
+                  <Label layoutX="17.0" layoutY="143.0" text="ALV (eur):" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="155.0" />
+                  <TextField fx:id="tfSumma" layoutX="101.0" layoutY="108.0" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="115.0" />
+                  <TextField fx:id="tfALV" layoutX="101.0" layoutY="139.0" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="150.0" />
+                  <Button fx:id="btnLuo" disable="true" layoutX="381.0" layoutY="218.0" mnemonicParsing="false" onAction="#luoLasku" prefHeight="26.0" prefWidth="85.0" text="Luo lasku" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" />
+                  <Label layoutX="17.0" layoutY="14.0" text="Asiakas:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                  <Label layoutX="18.0" layoutY="40.0" text="Etunimi:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                  <Label layoutX="17.0" layoutY="66.0" text="Sukunimi:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85.0" />
+                  <TextField fx:id="tfEtunimi" disable="true" layoutX="101.0" layoutY="36.0" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="45.0" />
+                  <TextField fx:id="tfSukunimi" disable="true" layoutX="101.0" layoutY="71.0" prefWidth="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="80.0" />
+                  <Button fx:id="btnPaivita" disable="true" layoutX="303.0" layoutY="224.0" mnemonicParsing="false" onAction="#paivita" prefHeight="26.0" prefWidth="85.0" text="Päivitä" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="270.0" />
+                  <ListView fx:id="lwPalvelut" layoutX="271.0" layoutY="34.0" prefHeight="148.0" prefWidth="165.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
+                  <Label layoutX="271.0" layoutY="14.0" text="Varauksen palvelut:" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="btnCancel" disable="true" mnemonicParsing="false" onAction="#peruuta" prefHeight="26.0" prefWidth="85.0" text="Peruuta" />
+         </children>
+         <BorderPane.margin>
+            <Insets left="15.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="apKeski" disable="true" prefHeight="626.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="59.0" layoutY="190.0" mnemonicParsing="false" onAction="#muokkaa" prefHeight="45.0" text="Muokkaa" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="85.0" />
+            <Button layoutX="66.0" layoutY="244.0" mnemonicParsing="false" onAction="#poista" prefHeight="45.0" text="Poista" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="145.0" />
+            <Button fx:id="btnSpostiLasku" layoutX="72.0" layoutY="313.0" mnemonicParsing="false" onAction="#lahetaSahkoposti" prefHeight="45.0" text="Lähetä lasku sähköpostiin" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="205.0" />
+            <Button fx:id="btnTallennaPdf" layoutX="20.0" layoutY="313.0" mnemonicParsing="false" onAction="#tallennaPdfLasku" prefHeight="45.0" text="Luo ja tallenna pdf" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="325.0" />
+            <Button fx:id="btnSpostiMuistutus" layoutX="20.0" layoutY="260.0" mnemonicParsing="false" onAction="#lahetaSahkoposti" prefHeight="45.0" text="Lähetä muistutus sähköpostiin" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="265.0" />
+            <Button layoutX="20.0" layoutY="427.0" mnemonicParsing="false" onAction="#tallennaPdfLasku" prefHeight="45.0" text="Luo ja tallenna pdf muistutus" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="385.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
